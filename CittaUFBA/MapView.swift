@@ -27,9 +27,13 @@ struct MapView: View {
     
     @State private var isPresented : Bool = false
     
+    @State private var isPresentedPoint : Bool = false
+    
     @State private var selectedBus : Bus = Bus.B1
     
     @State private var selectedRoute : Route = rotas[.B1]!
+    
+    @State private var selectedLocation : Location = Location(name: "ADM / FACED", coordinate: CLLocationCoordinate2D(latitude: -12.9896492, longitude: -38.5422639), description: "Volta: ADM / FACED / Contábeis / Pavilhão de Aulas Canela / Acesso: DIREITO / ICS /")
     
     var body: some View {
         VStack {
@@ -46,58 +50,58 @@ struct MapView: View {
                     }
                 }.pickerStyle(.menu)
         
-//                Text("\(selectedBus.rawValue.capitalized)")
+                Text("\(selectedBus.rawValue.capitalized)")
                 
                 Spacer()
             }.padding()
             
             Spacer()
             
-//            Text("Roteiro BUZUFBA")
-//                .font(.title)
+            Text("Roteiro BUZUFBA")
+                .font(.title)
             
-            //            Text(selectedLocation.name)
-            //                .font(.subheadline)
+                        Text(selectedLocation.name)
+                            .font(.subheadline)
             
             Spacer()
             
             
             Map(coordinateRegion: $region, annotationItems: rotas[selectedBus]!.caminho) {location in
-                MapMarker(coordinate: location.coordinate)
-//                MapAnnotation(coordinate: location.coordinate) {
-//                    Circle()
-//                        .fill(.red
-//                        )
-//                        .frame(width: 30, height: 30)
-//                        .onTapGesture(count: 1) {
-//                            selectedLocation = location
-//
-//                            isPresented.toggle()
-//                        }.sheet(isPresented: $isPresented) {
-//                            Text("Salvador")
-//                                .font(.title)
-//
-//                            Text(selectedLocation.description)
-//                                .multilineTextAlignment(.center)
-//                                .padding()
-//                        }
-//                }
+//                MapMarker(coordinate: location.coordinate)
+                
+                MapAnnotation(coordinate: location.coordinate) {
+                    Circle()
+                        .fill(.red
+                        )
+                        .frame(width: 30, height: 30)
+                        .onTapGesture(count: 1) {
+                            selectedLocation = location
+
+                            isPresentedPoint.toggle()
+                        }.sheet(isPresented: $isPresentedPoint) {
+                            Text("\(selectedLocation.name)")
+                                .font(.title)
+                        }
+                }
             }
             
             Spacer()
             
-            Button("HORÁRIO") {
+            Button("HORÁRIOS") {
                 isPresented.toggle()
             }.sheet(isPresented: $isPresented) {
-                Text("Horários")
-                
-                ForEach(rotas[selectedBus]!.horarios, id: \.self) {
-                    horario in Text("\(horario)")
+                VStack{
+                    List {
+                        Section(header: Text("Horários \(selectedBus.rawValue.capitalized)")) {
+                            ForEach(rotas[selectedBus]!.horarios, id: \.self) {
+                                horario in Text("\(horario)").padding()
+                            }
+                        }.headerProminence(.increased)
+                    }
                 }
             }
             .buttonStyle(BlueButton())
             .padding()
-            
             //            ScrollView(.horizontal) {
             //                HStack {
             //                    ForEach(locations) {

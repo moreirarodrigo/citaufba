@@ -47,7 +47,7 @@ var paradas : [String : Location] = [
     "DELICECIA": Location(name: "Ponto Deli&cia - acesso direito", coordinate: CLLocationCoordinate2D(latitude: -12.9896492, longitude: -38.5422639), description: ""),
     "VIADUTOFEDERACAO": Location(name: "Viaduto Federação", coordinate: CLLocationCoordinate2D(latitude: -12.9989208, longitude: -38.5201048), description: ""),
     "FACED": Location(name: "ADM / FACED", coordinate: CLLocationCoordinate2D(latitude: -12.9896492, longitude: -38.5422639), description: "Volta: ADM / FACED / Contábeis / Pavilhão de Aulas Canela / Acesso: DIREITO / ICS /"),
-    "DIREITO": Location(name: "Faculdade de Direito da UFBA", coordinate: CLLocationCoordinate2D(latitude: -12.9896492, longitude: -38.5422639), description: ""),
+    "DIREITO": Location(name: "Faculdade de Direito da UFBA", coordinate: CLLocationCoordinate2D(latitude: -12.996230899927232, longitude: -38.52171499805207), description: ""),
     //    "ODONTOLOGIA": "",
     //    "VASGODAGAMA": "",
     //    "ORIXASCENTER": "",
@@ -55,7 +55,10 @@ var paradas : [String : Location] = [
     //    "GABINETE": "",
     //    "PIEDADE": "",
     //    "CAMPOGRANDE": "",
-    "BELASARTES": Location(name: "Belas Artes", coordinate: CLLocationCoordinate2D(latitude: -12.99071721705346, longitude: -38.519958770882475), description: "Belas Artes")
+    "BELASARTES": Location(name: "Belas Artes", coordinate: CLLocationCoordinate2D(latitude: -12.99071721705346, longitude: -38.519958770882475), description: "Belas Artes"),
+    "RESIDENCIA3": Location(name: "Residência, R. Humberto de Campos", coordinate: CLLocationCoordinate2D(latitude: -12.99685570846989, longitude: -38.51883948011861), description: "Residencia 3"),
+    "INSTFEMININOPOLITEAMA": Location(name: "Inst. Feminino (Politeama)", coordinate: CLLocationCoordinate2D(latitude: -12.9857454, longitude: -38.5220504), description: "Inst. Feminino (Politeama)"),
+    "GEOCIENCIAS": Location(name: "Geociências", coordinate: CLLocationCoordinate2D(latitude: -12.9980058, longitude: -38.5097005), description: "Geociências")
 ]
 
 var B1 : Route = Route(
@@ -66,23 +69,44 @@ var B1 : Route = Route(
     ],
     ida: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["VIADUTOCAMPOGRANDE"]!,paradas["BELASARTES"]!, paradas["REITORIA"]!],
     volta: [paradas["REITORIA"]!, paradas["CRECHE"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["ARQUITETURA"]!, paradas["ESTGEOCIENCIAS"]!, paradas["PAF1"]!],
-    horarios: ["6:10", "7:00", "7:50", "8:40", "9:30", "10:20", "11:20", "12:00", "12:50", "13:40", "14:40", "15:40", "16:30", "17:30", "18:20", "19:20", "19:50", "20:20", "21:00", "21:40", "22:15"]
+    horarios: ["6:10", "7:00", "7:50", "8:40", "9:30", "10:20", "11:10", "12:00", "12:50", "13:40", "14:40", "15:40", "16:30", "17:30", "18:20 **", "19:20", "19:50 ***", "20:20 ***", "21:00 ***", "21:40 ***", "22:15 ***"]
 )
 
 var EXPRESSO : Route = Route(
     bus: .EXPRESSO,
-    caminho: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["VIADUTOFEDERACAO"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["CRECHE"]!, paradas["REITORIA"]!, paradas["ESTGEOCIENCiAS"]!],
+    caminho: [
+        paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["VIADUTOFEDERACAO"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["CRECHE"]!, paradas["REITORIA"]!, paradas["ESTGEOCIENCIAS"]!
+    ],
     ida: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["VIADUTOCAMPOGRANDE"]!,paradas["BELASARTES"]!, paradas["REITORIA"]!],
     volta: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["VIADUTOCAMPOGRANDE"]!,paradas["BELASARTES"]!, paradas["REITORIA"]!],
-    horarios: ["6:30", "7:20", "8:00", "9:00", "9:50", "10:40", "11:30", "12:20", "13:10", "14:00", "14:50", "15:40", "16:30", "17:20", "18:10", "19:00", "19:50", "20:40"])
+    horarios: ["6:30", "7:20", "8:00", "9:00", "9:50", "10:40", "11:30", "12:20", "13:10", "14:00", "14:50", "15:40", "16:30", "17:20", "18:10", "19:00", "19:50", "20:40"]
+)
+
+var B3 : Route = Route(
+    bus: .B3,
+    caminho: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["CRECHE"]!, paradas["RESIDENCIA3"]!, paradas["DIREITO"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["ESTGEOCIENCIAS"]!],
+    ida: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["CRECHE"]!, paradas["RESIDENCIA3"]!, paradas["DIREITO"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["ESTGEOCIENCIAS"]!, paradas["PAF1"]!],
+    volta: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["CRECHE"]!, paradas["RESIDENCIA3"]!, paradas["DIREITO"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["ESTGEOCIENCIAS"]!, paradas["PAF1"]!],
+    horarios: ["6:10", "7:10", "8:00", "8:50", "9:50", "10:40", "11:20", "12:00", "12:50", "13:50","14:50", "15:50", "16:50", "17:55", "19:00", "20:00", "20:50", "21:30", "22:15"])
+
+var B2 : Route = Route(
+    bus: .B2,
+    caminho: [
+        paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["VIADUTOFEDERACAO"]!, paradas["ARQUITETURA"]!,paradas["POLITECNICA"]!, paradas["CRECHE"]!,
+        paradas["REITORIA"]!, paradas["INSTFEMININOPOLITEAMA"]!, paradas["RESIDENCIA1E2"]!, paradas["DELICECIA"]!, paradas["SAOLAZARO"]!, paradas["GEOCIENCIAS"]!,
+    ],
+    ida: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["VIADUTOFEDERACAO"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["CRECHE"]!, paradas["REITORIA"]!],
+    volta: [paradas["INSTFEMININOPOLITEAMA"]!, paradas["RESIDENCIA1E2"]!, paradas["DELICECIA"]!, paradas["SAOLAZARO"]!, paradas["POLITECNICA"]!, paradas["ARQUITETURA"]!, paradas["GEOCIENCIAS"]!, paradas["PAF1"]!,],
+    horarios: ["6:10", "7:10", "8:20", "9:20", "10:20", "11:20", "12:20", "13:30", "14:40", "15:40", "16:40", "17:40", "18:50**", "19:40", "20:30", "21:10", "22:30"]
+)
 
 var rotas : [Bus : Route] = [
     .B1 : B1,
-    .B2 : B1,
-    .B3 : B1,
+    .B2 : B2,
+    .B3 : B3,
     .B4 : B1,
     .B5 : B1,
-    .EXPRESSO : B1,
+    .EXPRESSO : EXPRESSO,
 ]
 
 let geociencias = Location(name: "Geociencias", coordinate: CLLocationCoordinate2D(latitude: -12.9980058, longitude: -38.5097005), description: "Instituto de Geociencias")
