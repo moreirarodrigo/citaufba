@@ -58,7 +58,11 @@ var paradas : [String : Location] = [
     "BELASARTES": Location(name: "Belas Artes", coordinate: CLLocationCoordinate2D(latitude: -12.99071721705346, longitude: -38.519958770882475), description: "Belas Artes"),
     "RESIDENCIA3": Location(name: "Residência, R. Humberto de Campos", coordinate: CLLocationCoordinate2D(latitude: -12.99685570846989, longitude: -38.51883948011861), description: "Residencia 3"),
     "INSTFEMININOPOLITEAMA": Location(name: "Inst. Feminino (Politeama)", coordinate: CLLocationCoordinate2D(latitude: -12.9857454, longitude: -38.5220504), description: "Inst. Feminino (Politeama)"),
-    "GEOCIENCIAS": Location(name: "Geociências", coordinate: CLLocationCoordinate2D(latitude: -12.9980058, longitude: -38.5097005), description: "Geociências")
+    "GEOCIENCIAS": Location(name: "Geociências", coordinate: CLLocationCoordinate2D(latitude: -12.9980058, longitude: -38.5097005), description: "Geociências"),
+    "ECONOMIA": Location(name: "Faculdade de Economia da UFBA", coordinate: CLLocationCoordinate2D(latitude: -12.983903779977037, longitude:  -38.515197200423366), description: ""),
+    "GABINETE": Location(name: "Retorno Gabinete de Leitura", coordinate: CLLocationCoordinate2D(latitude: -12.983043627293577, longitude: -38.514780052295805), description: ""),
+    "PIEDADE": Location(name: "Praça da Piedade", coordinate: CLLocationCoordinate2D(latitude: -12.983406163890843, longitude: -38.514897740837746), description: ""),
+    
 ]
 
 var B1 : Route = Route(
@@ -100,11 +104,20 @@ var B2 : Route = Route(
     horarios: ["6:10", "7:10", "8:20", "9:20", "10:20", "11:20", "12:20", "13:30", "14:40", "15:40", "16:40", "17:40", "18:50**", "19:40", "20:30", "21:10", "22:30"]
 )
 
+var B4 : Route = Route(
+    bus: .B4,
+    caminho: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["CRECHE"]!, paradas["REITORIA"]!, paradas["BELASARTES"]!, paradas["SAOLAZARO"]!, paradas["ESTGEOCIENCIAS"]!, paradas["ECONOMIA"]!, paradas["GABINETE"]!, paradas["PIEDADE"]!],
+    ida: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["CRECHE"]!, paradas["REITORIA"]!, paradas["ECONOMIA"]!],
+    volta: [paradas["GABINETE"]!, paradas["PIEDADE"]!, paradas["BELASARTES"]!, paradas["REITORIA"]!, paradas["CRECHE"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["ARQUITETURA"]!, paradas["ESTGEOCIENCIAS"]!],
+    horarios: ["6:30", "7:30", "8:20", "9:10", "10:10", "11:20", "12:20", "13:10", "14:10", "15:10", "16:10", "17:20", "18:25**", "19:20", "20:20", "21:10", "21:50", "22:30"]
+)
+
+
 var rotas : [Bus : Route] = [
     .B1 : B1,
     .B2 : B2,
     .B3 : B3,
-    .B4 : B1,
+    .B4 : B4,
     .B5 : B1,
     .EXPRESSO : EXPRESSO,
 ]

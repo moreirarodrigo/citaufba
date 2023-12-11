@@ -49,8 +49,8 @@ struct MapView: View {
                         Text(bus.rawValue)
                     }
                 }.pickerStyle(.menu)
-        
-                Text("\(selectedBus.rawValue.capitalized)")
+                
+//                Text("\(selectedBus.rawValue.capitalized)")
                 
                 Spacer()
             }.padding()
@@ -60,8 +60,8 @@ struct MapView: View {
             Text("Roteiro BUZUFBA")
                 .font(.title)
             
-                        Text(selectedLocation.name)
-                            .font(.subheadline)
+//            Text(selectedLocation.name)
+//                .font(.subheadline)
             
             Spacer()
             
@@ -92,16 +92,28 @@ struct MapView: View {
             }.sheet(isPresented: $isPresented) {
                 VStack{
                     List {
-                        Section(header: Text("Horários \(selectedBus.rawValue.capitalized)")) {
+                        Section {
                             ForEach(rotas[selectedBus]!.horarios, id: \.self) {
                                 horario in Text("\(horario)").padding()
                             }
-                        }.headerProminence(.increased)
+                        } header: {
+                            Text("Horários*  \(selectedBus.rawValue.capitalized)")
+                        }
+                        .headerProminence(.increased)
+                        
+                        Section {
+                            Text("* sujeito às condições de trânsito")
+                            Text("** último horário a entrar em são lazáro")
+                            Text("*** passa pelo portão principal de ondina")
+                        } header: {
+                            Text("Legenda")
+                        }
                     }
                 }
             }
             .buttonStyle(BlueButton())
             .padding()
+            .ignoresSafeArea()
             //            ScrollView(.horizontal) {
             //                HStack {
             //                    ForEach(locations) {
