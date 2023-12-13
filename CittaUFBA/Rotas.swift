@@ -36,33 +36,21 @@ var paradas : [String : Location] = [
     "POLITECNICA": Location(name: "Politecnica", coordinate: CLLocationCoordinate2D(latitude: -12.998977275812774, longitude: -38.51083809347577), description: "Escola Politecnica"),
     "CRECHE": Location(name: "Creche", coordinate: CLLocationCoordinate2D(latitude: -12.995595881234435, longitude: -38.51571617080564), description: "Pt. Creche Canela"),
     "REITORIA": Location(name: "Reitoria", coordinate: CLLocationCoordinate2D(latitude: -12.99290908554212, longitude: -38.5188261253909), description: ""),
-    
     "ESTGEOCIENCIAS": Location(name: "Estacionamento Geociências", coordinate: CLLocationCoordinate2D(latitude: -12.999318551881649, longitude: -38.50555647075596), description: "Estacionamento Geociências"),
-    //    "ROTULAREISCATOLICOS": "",
-    //    "ICS": "",
-    "VIADUTOCAMPOGRANDE": Location(name: "Viaduto do Campo Grande", coordinate: CLLocationCoordinate2D(latitude: -12.988597101549608, longitude: -38.52071799363476
-                                                                                                      ), description: ""),
+    "VIADUTOCAMPOGRANDE": Location(name: "Viaduto do Campo Grande", coordinate: CLLocationCoordinate2D(latitude: -12.988597101549608, longitude: -38.52071799363476), description: ""),
     "SAOLAZARO": Location(name: "São Lázaro", coordinate: CLLocationCoordinate2D(latitude: -13.004976649183536, longitude: -38.51235961609195), description: "São Lázaro"),
-    "RESIDENCIA1E2": Location(name: "Residencia 1 e 2 - Largo da vitória", coordinate: CLLocationCoordinate2D(latitude: -12.9896492, longitude: -38.5422639), description: ""),
+    "RESIDENCIA1E2": Location(name: "Residencia 1 e 2 - Largo da vitória", coordinate: CLLocationCoordinate2D(latitude: -12.995944803972302, longitude: -38.52768960445885), description: ""),
     "DELICECIA": Location(name: "Ponto Deli&cia - acesso direito", coordinate: CLLocationCoordinate2D(latitude: -12.9896492, longitude: -38.5422639), description: ""),
     "VIADUTOFEDERACAO": Location(name: "Viaduto Federação", coordinate: CLLocationCoordinate2D(latitude: -12.9989208, longitude: -38.5201048), description: ""),
-    "FACED": Location(name: "ADM / FACED", coordinate: CLLocationCoordinate2D(latitude: -12.9896492, longitude: -38.5422639), description: "Volta: ADM / FACED / Contábeis / Pavilhão de Aulas Canela / Acesso: DIREITO / ICS /"),
+    "FACED": Location(name: "ADM / FACED", coordinate: CLLocationCoordinate2D(latitude: -12.995370587445427, longitude: -38.51931737562366), description: "Volta: ADM / FACED / Contábeis / Pavilhão de Aulas Canela / Acesso: DIREITO / ICS /"),
     "DIREITO": Location(name: "Faculdade de Direito da UFBA", coordinate: CLLocationCoordinate2D(latitude: -12.996230899927232, longitude: -38.52171499805207), description: ""),
-    //    "ODONTOLOGIA": "",
-    //    "VASGODAGAMA": "",
-    //    "ORIXASCENTER": "",
-    //    "ECONOMIA": "",
-    //    "GABINETE": "",
-    //    "PIEDADE": "",
-    //    "CAMPOGRANDE": "",
     "BELASARTES": Location(name: "Belas Artes", coordinate: CLLocationCoordinate2D(latitude: -12.99071721705346, longitude: -38.519958770882475), description: "Belas Artes"),
     "RESIDENCIA3": Location(name: "Residência, R. Humberto de Campos", coordinate: CLLocationCoordinate2D(latitude: -12.99685570846989, longitude: -38.51883948011861), description: "Residencia 3"),
     "INSTFEMININOPOLITEAMA": Location(name: "Inst. Feminino (Politeama)", coordinate: CLLocationCoordinate2D(latitude: -12.9857454, longitude: -38.5220504), description: "Inst. Feminino (Politeama)"),
     "GEOCIENCIAS": Location(name: "Geociências", coordinate: CLLocationCoordinate2D(latitude: -12.9980058, longitude: -38.5097005), description: "Geociências"),
     "ECONOMIA": Location(name: "Faculdade de Economia da UFBA", coordinate: CLLocationCoordinate2D(latitude: -12.983903779977037, longitude:  -38.515197200423366), description: ""),
     "GABINETE": Location(name: "Retorno Gabinete de Leitura", coordinate: CLLocationCoordinate2D(latitude: -12.983043627293577, longitude: -38.514780052295805), description: ""),
-    "PIEDADE": Location(name: "Praça da Piedade", coordinate: CLLocationCoordinate2D(latitude: -12.983406163890843, longitude: -38.514897740837746), description: ""),
-    
+    "PIEDADE": Location(name: "Praça da Piedade", coordinate: CLLocationCoordinate2D(latitude: -12.983406163890843, longitude: -38.514897740837746), description: "")
 ]
 
 var B1 : Route = Route(
@@ -100,7 +88,7 @@ var B2 : Route = Route(
         paradas["REITORIA"]!, paradas["INSTFEMININOPOLITEAMA"]!, paradas["RESIDENCIA1E2"]!, paradas["DELICECIA"]!, paradas["SAOLAZARO"]!, paradas["GEOCIENCIAS"]!,
     ],
     ida: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["VIADUTOFEDERACAO"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["CRECHE"]!, paradas["REITORIA"]!],
-    volta: [paradas["INSTFEMININOPOLITEAMA"]!, paradas["RESIDENCIA1E2"]!, paradas["DELICECIA"]!, paradas["SAOLAZARO"]!, paradas["POLITECNICA"]!, paradas["ARQUITETURA"]!, paradas["GEOCIENCIAS"]!, paradas["PAF1"]!,],
+    volta: [paradas["INSTFEMININOPOLITEAMA"]!, paradas["RESIDENCIA1E2"]!, paradas["DELICECIA"]!, paradas["SAOLAZARO"]!, paradas["POLITECNICA"]!, paradas["ARQUITETURA"]!, paradas["GEOCIENCIAS"]!, paradas["PAF1"]!],
     horarios: ["6:10", "7:10", "8:20", "9:20", "10:20", "11:20", "12:20", "13:30", "14:40", "15:40", "16:40", "17:40", "18:50**", "19:40", "20:30", "21:10", "22:30"]
 )
 

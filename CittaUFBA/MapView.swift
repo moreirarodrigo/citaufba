@@ -33,42 +33,15 @@ struct MapView: View {
     
     @State private var selectedRoute : Route = rotas[.B1]!
     
+    var coordinates = rotas[.B1]!.caminho.map { (location) ->
+        CLLocationCoordinate2D in return location.coordinate
+    }
+    
     @State private var selectedLocation : Location = Location(name: "ADM / FACED", coordinate: CLLocationCoordinate2D(latitude: -12.9896492, longitude: -38.5422639), description: "Volta: ADM / FACED / Contábeis / Pavilhão de Aulas Canela / Acesso: DIREITO / ICS /")
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                
-                Text("Selecione uma rota:")
-                
-                Spacer()
-                
-                Picker("Selecione uma rota", selection: $selectedBus) {
-                    ForEach(Bus.allCases) {bus in
-                        Text(bus.rawValue)
-                    }
-                }.pickerStyle(.menu)
-                
-//                Text("\(selectedBus.rawValue.capitalized)")
-                
-                Spacer()
-            }.padding()
-            
-            Spacer()
-            
-            Text("Roteiro BUZUFBA")
-                .font(.title)
-            
-//            Text(selectedLocation.name)
-//                .font(.subheadline)
-            
-            Spacer()
-            
-            
+        ZStack {
             Map(coordinateRegion: $region, annotationItems: rotas[selectedBus]!.caminho) {location in
-//                MapMarker(coordinate: location.coordinate)
-                
                 MapAnnotation(coordinate: location.coordinate) {
                     Circle()
                         .fill(.red
@@ -76,7 +49,7 @@ struct MapView: View {
                         .frame(width: 30, height: 30)
                         .onTapGesture(count: 1) {
                             selectedLocation = location
-
+                            
                             isPresentedPoint.toggle()
                         }.sheet(isPresented: $isPresentedPoint) {
                             Text("\(selectedLocation.name)")
@@ -85,48 +58,57 @@ struct MapView: View {
                 }
             }
             
-            Spacer()
-            
-            Button("HORÁRIOS") {
-                isPresented.toggle()
-            }.sheet(isPresented: $isPresented) {
-                VStack{
-                    List {
-                        Section {
-                            ForEach(rotas[selectedBus]!.horarios, id: \.self) {
-                                horario in Text("\(horario)").padding()
-                            }
-                        } header: {
-                            Text("Horários*  \(selectedBus.rawValue.capitalized)")
+            VStack {
+                HStack {
+                    Text("Selecione uma rota:")
+                        .font(.headline)
+                    
+                    Spacer()
+                    
+                    Picker("Selecione uma rota", selection: $selectedBus) {
+                        ForEach(Bus.allCases) {bus in
+                            Text(bus.rawValue)
                         }
-                        .headerProminence(.increased)
-                        
-                        Section {
-                            Text("* sujeito às condições de trânsito")
-                            Text("** último horário a entrar em são lazáro")
-                            Text("*** passa pelo portão principal de ondina")
-                        } header: {
-                            Text("Legenda")
+                    }
+                    .pickerStyle(.menu)
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(15)
+                .padding(20)
+                
+                Spacer()
+                
+                Button("HORÁRIOS") {
+                    isPresented.toggle()
+                }.sheet(isPresented: $isPresented) {
+                    VStack{
+                        List {
+                            Section {
+                                ForEach(rotas[selectedBus]!.horarios, id: \.self) {
+                                    horario in Text("\(horario)")
+                                        .padding()
+                                }
+                            } header: {
+                                Text("Horários*  \(selectedBus.rawValue.capitalized)")
+                            }
+                            .headerProminence(.increased)
+                            
+                            Section {
+                                Text("* sujeito às condições de trânsito")
+                                Text("** último horário a entrar em são lazáro")
+                                Text("*** passa pelo portão principal de ondina")
+                            } header: {
+                                Text("Legenda")
+                            }
                         }
                     }
                 }
+                .buttonStyle(BlueButton())
+                .padding()
             }
-            .buttonStyle(BlueButton())
-            .padding()
-            .ignoresSafeArea()
-            //            ScrollView(.horizontal) {
-            //                HStack {
-            //                    ForEach(locations) {
-            //                        location in Button(location.name) {
-            //                            selectedLocation = location
-            //
-            //                            region.center = location.coordinate
-            //                        }.buttonStyle(BlueButton())
-            //                    }
-            //                }
-            //            }
-            //            .padding()
         }
+        .ignoresSafeArea()
     }
 }
 
