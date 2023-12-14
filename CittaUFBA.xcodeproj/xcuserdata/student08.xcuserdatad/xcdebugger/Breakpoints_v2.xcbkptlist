@@ -3,4 +3,133 @@
    uuid = "195017D1-06D4-406A-85B1-A4F1F724899A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C7B3B267-28C7-423B-B9F7-DB357F11DA51"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CittaUFBA/MapView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "updateMapView(_:with:ida:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC1434FF-E614-425B-9ECB-174179A853AD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CittaUFBA/MapView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "updateMapView(_:with:ida:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EC1434FF-E614-425B-9ECB-174179A853AD - ee2d83cb65e445ff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.MKDirectionsResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CittaUFBA.MapsView.MapViewCoordinator.updateMapView(_: __C.MKMapView, with: CittaUFBA.Route, ida: Swift.Bool) -&gt; ()"
+                  moduleName = "CittaUFBA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student08/Documents/aula-1-rodrigo/CittaUFBA/CittaUFBA/MapView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "884">
+               </Location>
+               <Location
+                  uuid = "EC1434FF-E614-425B-9ECB-174179A853AD - 1041e7495ad3c249"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (__C.MKRouteStep) -&gt; Swift.String in closure #1 (Swift.Optional&lt;__C.MKDirectionsResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CittaUFBA.MapsView.MapViewCoordinator.updateMapView(_: __C.MKMapView, with: CittaUFBA.Route, ida: Swift.Bool) -&gt; ()"
+                  moduleName = "CittaUFBA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student08/Documents/aula-1-rodrigo/CittaUFBA/CittaUFBA/MapView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "EC1434FF-E614-425B-9ECB-174179A853AD - b9e1370dfe655ae6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Swift.String) -&gt; Swift.Bool in closure #1 (Swift.Optional&lt;__C.MKDirectionsResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CittaUFBA.MapsView.MapViewCoordinator.updateMapView(_: __C.MKMapView, with: CittaUFBA.Route, ida: Swift.Bool) -&gt; ()"
+                  moduleName = "CittaUFBA"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/student08/Documents/aula-1-rodrigo/CittaUFBA/CittaUFBA/MapView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBA50964-1F8F-46A2-B30D-409EBCD03880"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CittaUFBA/MapView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "updateMapView(_:with:ida:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ECAD10B5-87DA-4D0C-91FB-0B7736598E2B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CittaUFBA/MapView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "updateMapView(_:with:ida:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E269F597-5A78-41AD-A1B3-E306ABFD3E20"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CittaUFBA/MapView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

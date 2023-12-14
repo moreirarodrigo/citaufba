@@ -8,8 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var directions : [String] = ["a", "b", "c"]
+    
     var body: some View {
-        MapView()
+        TabView {
+            MapView()
+                .tabItem {
+                    Label("Ônibus", systemImage: "bus")
+                }
+            MapaRota(directions: directions)
+                .tabItem {
+                    Label("Rotas", systemImage: "map")
+                }
+            Horarios()
+                .tabItem {
+                    Label("Horários", systemImage: "clock")
+                }
+            RastreadorView()
+                .tabItem {
+                    Label("Rastrear", systemImage: "magnifyingglass")
+                }
+            Charts()
+                .tabItem {
+                    Label("Gráficos", systemImage: "chart.bar.xaxis")
+                }
+        }
     }
 }
 

@@ -39,24 +39,12 @@ struct MapView: View {
     
     @State private var selectedLocation : Location = Location(name: "ADM / FACED", coordinate: CLLocationCoordinate2D(latitude: -12.9896492, longitude: -38.5422639), description: "Volta: ADM / FACED / Contábeis / Pavilhão de Aulas Canela / Acesso: DIREITO / ICS /")
     
+    @State private var directions : [String] = []
+    @State private var showDirections = false
+    
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $region, annotationItems: rotas[selectedBus]!.caminho) {location in
-                MapAnnotation(coordinate: location.coordinate) {
-                    Circle()
-                        .fill(.red
-                        )
-                        .frame(width: 30, height: 30)
-                        .onTapGesture(count: 1) {
-                            selectedLocation = location
-                            
-                            isPresentedPoint.toggle()
-                        }.sheet(isPresented: $isPresentedPoint) {
-                            Text("\(selectedLocation.name)")
-                                .font(.title)
-                        }
-                }
-            }
+            MapsView(directions: $directions, selectedBus: $selectedBus, ida: false)
             
             VStack {
                 HStack {
@@ -66,11 +54,15 @@ struct MapView: View {
                     Spacer()
                     
                     Picker("Selecione uma rota", selection: $selectedBus) {
-                        ForEach(Bus.allCases) {bus in
+                        ForEach(Bus.allCases) {
+                            bus in
                             Text(bus.rawValue)
                         }
                     }
                     .pickerStyle(.menu)
+                    .onReceive([self.selectedBus].publisher.first()) { _ in
+                        Global.horarios = rotas[selectedBus]!.horarios
+                    }
                 }
                 .padding()
                 .background(Color.white)
@@ -78,39 +70,108 @@ struct MapView: View {
                 .padding(20)
                 
                 Spacer()
-                
-                Button("HORÁRIOS") {
-                    isPresented.toggle()
-                }.sheet(isPresented: $isPresented) {
-                    VStack{
-                        List {
-                            Section {
-                                ForEach(rotas[selectedBus]!.horarios, id: \.self) {
-                                    horario in Text("\(horario)")
-                                        .padding()
-                                }
-                            } header: {
-                                Text("Horários*  \(selectedBus.rawValue.capitalized)")
-                            }
-                            .headerProminence(.increased)
-                            
-                            Section {
-                                Text("* sujeito às condições de trânsito")
-                                Text("** último horário a entrar em são lazáro")
-                                Text("*** passa pelo portão principal de ondina")
-                            } header: {
-                                Text("Legenda")
-                            }
-                        }
-                    }
-                }
-                .buttonStyle(BlueButton())
-                .padding()
             }
         }
-        .ignoresSafeArea()
     }
 }
+
+struct MapsView: UIViewRepresentable {
+    typealias UIViewType = MKMapView
+    
+    @Binding var directions: [String]
+    @Binding var selectedBus: Bus
+    @State var ida : Bool
+    
+    func makeCoordinator() -> MapViewCoordinator {
+        return MapViewCoordinator(parent: self)
+    }
+    
+    func makeUIView(context: Context) -> MKMapView {
+        let mapView = MKMapView()
+        mapView.delegate = context.coordinator
+        
+        // Configurar o mapa, adicionar marcadores, etc.
+        
+        return mapView
+    }
+    
+    func updateUIView(_ uiView: MKMapView, context: Context) {
+        // Atualizar o mapa conforme necessário
+        if let route = rotas[selectedBus] {
+            context.coordinator.updateMapView(uiView, with: route, ida: ida)
+        }
+    }
+    
+    class MapViewCoordinator: NSObject, MKMapViewDelegate {
+        var parent: MapsView
+        
+        init(parent: MapsView) {
+            self.parent = parent
+        }
+        
+        func updateMapView(_ mapView: MKMapView, with route: Route, ida : Bool) {
+            mapView.removeAnnotations(mapView.annotations)
+            mapView.removeOverlays(mapView.overlays)
+            
+            // Adicionar anotações para todas as paradas do caminho
+            for location in route.ida {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = location.coordinate
+                annotation.title = location.name
+                mapView.addAnnotation(annotation)
+            }
+            
+            // Criar a solicitação de direções e calcular a rota apenas se for o ônibus selecionado
+            let request = MKDirections.Request()
+            request.requestsAlternateRoutes = true
+            request.transportType = .automobile
+            
+            if(ida){
+                if let firstLocation = route.ida.first, let lastLocation = route.ida.last {
+                    request.source = MKMapItem(placemark: MKPlacemark(coordinate: firstLocation.coordinate))
+                    request.destination = MKMapItem(placemark: MKPlacemark(coordinate: lastLocation.coordinate))
+                    
+                    let directions = MKDirections(request: request)
+                    directions.calculate { response, error in
+                        guard let route = response?.routes.first else { return }
+                        mapView.addOverlay(route.polyline)
+                        mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
+                        self.parent.directions = route.steps.map { $0.instructions }.filter { !$0.isEmpty }
+                        Global.teste = route.steps.map { $0.instructions }.filter { !$0.isEmpty }
+                    }
+                }
+            } else{
+                if let firstLocation = route.volta.first, let lastLocation = route.volta.last {
+                    request.source = MKMapItem(placemark: MKPlacemark(coordinate: firstLocation.coordinate))
+                    request.destination = MKMapItem(placemark: MKPlacemark(coordinate: lastLocation.coordinate))
+                    
+                    let directions = MKDirections(request: request)
+                    directions.calculate { response, error in
+                        guard let route = response?.routes.first else { return }
+                        mapView.addOverlay(route.polyline)
+                        mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
+                        self.parent.directions = route.steps.map { $0.instructions }.filter { !$0.isEmpty }
+                        Global.teste = route.steps.map { $0.instructions }.filter { !$0.isEmpty }
+                    }
+                    
+                    
+                    
+                }
+                
+            }
+            
+            
+        }
+        
+        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = .systemBlue
+            renderer.lineWidth = 5
+            return renderer
+        }
+    }
+}
+
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {

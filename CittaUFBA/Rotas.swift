@@ -8,11 +8,16 @@
 import Foundation
 import MapKit
 
+struct Global {
+    static var teste : [String] = []
+    static var horarios : [String] = []
+}
+
 struct Location : Identifiable {
-    let id : UUID = UUID()
-    let name : String
-    let coordinate : CLLocationCoordinate2D
-    let description : String
+    var id : UUID = UUID()
+    var name : String
+    var coordinate : CLLocationCoordinate2D
+    var description : String
 }
 
 struct Route {
@@ -21,6 +26,11 @@ struct Route {
     let ida : [Location]
     let volta : [Location]
     let horarios : [String]
+}
+
+struct LatLog : Decodable{
+    var latitude : String
+    var longitude : String
 }
 
 enum Bus : String, CaseIterable, Identifiable {
@@ -77,8 +87,8 @@ var EXPRESSO : Route = Route(
 var B3 : Route = Route(
     bus: .B3,
     caminho: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["CRECHE"]!, paradas["RESIDENCIA3"]!, paradas["DIREITO"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["ESTGEOCIENCIAS"]!],
-    ida: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["CRECHE"]!, paradas["RESIDENCIA3"]!, paradas["DIREITO"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["ESTGEOCIENCIAS"]!, paradas["PAF1"]!],
-    volta: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["CRECHE"]!, paradas["RESIDENCIA3"]!, paradas["DIREITO"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["ESTGEOCIENCIAS"]!, paradas["PAF1"]!],
+    ida: [paradas["PAF1"]!, paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["CRECHE"]!, paradas["RESIDENCIA3"]!, paradas["DIREITO"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["ESTGEOCIENCIAS"]!],
+    volta: [paradas["RESIDENCIA5"]!, paradas["ARQUITETURA"]!, paradas["POLITECNICA"]!, paradas["SAOLAZARO"]!, paradas["CRECHE"]!, paradas["RESIDENCIA3"]!, paradas["DIREITO"]!, paradas["VIADUTOVALEDOCANELA"]!, paradas["ESTGEOCIENCIAS"]!, paradas["PAF1"]!],
     horarios: ["6:10", "7:10", "8:00", "8:50", "9:50", "10:40", "11:20", "12:00", "12:50", "13:50","14:50", "15:50", "16:50", "17:55", "19:00", "20:00", "20:50", "21:30", "22:15"])
 
 var B2 : Route = Route(
@@ -115,5 +125,31 @@ let portaoPrincipalOndina = Location(name: "Portao Principal Ondina", coordinate
 let igeoResidenciaGaribalde = Location(name: "Igeo Residencia Garibalde", coordinate: CLLocationCoordinate2D(latitude: -12.9971221, longitude: -38.5108653), description: "")
 let famed = Location(name: "Famed ICS", coordinate: CLLocationCoordinate2D(latitude: -12.9944802, longitude: -38.5230584), description: "")
 
-
-
+class ViewModel : ObservableObject{
+    
+    @Published var posicao : LatLog?
+    
+    func fetch(){
+            guard let url = URL(string: "http://192.168.43.122" ) else{
+                return
+            }
+            
+            let task = URLSession.shared.dataTask(with: url){ [weak self] data, _, error in
+                    guard let data = data, error == nil else{
+                    return
+                }
+                
+                do {
+                    let parsed = try JSONDecoder().decode(LatLog.self, from: data)
+                    
+                    DispatchQueue.main.async {
+                        self?.posicao = parsed
+                    }
+                }catch{
+                    print(error)
+                }
+            }
+            
+            task.resume()
+        }
+}

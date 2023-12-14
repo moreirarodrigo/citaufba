@@ -14,6 +14,10 @@
 		F28C301F2B1E527A00E7EFB3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C301E2B1E527A00E7EFB3 /* MapView.swift */; };
 		F28C30212B1F9C4500E7EFB3 /* Rotas.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C30202B1F9C4500E7EFB3 /* Rotas.swift */; };
 		F2B58CC92B2A2F3E00837166 /* Teste.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B58CC82B2A2F3E00837166 /* Teste.swift */; };
+		F2B58CCB2B2B820400837166 /* MapaRota.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B58CCA2B2B820400837166 /* MapaRota.swift */; };
+		F2B58CCD2B2B91C900837166 /* Horarios.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B58CCC2B2B91C900837166 /* Horarios.swift */; };
+		F2B58CD12B2B9B7B00837166 /* Charts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B58CD02B2B9B7B00837166 /* Charts.swift */; };
+		F2B58CD32B2B9CED00837166 /* Rastreador.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B58CD22B2B9CED00837166 /* Rastreador.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +29,10 @@
 		F28C301E2B1E527A00E7EFB3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F28C30202B1F9C4500E7EFB3 /* Rotas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotas.swift; sourceTree = "<group>"; };
 		F2B58CC82B2A2F3E00837166 /* Teste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teste.swift; sourceTree = "<group>"; };
+		F2B58CCA2B2B820400837166 /* MapaRota.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaRota.swift; sourceTree = "<group>"; };
+		F2B58CCC2B2B91C900837166 /* Horarios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Horarios.swift; sourceTree = "<group>"; };
+		F2B58CD02B2B9B7B00837166 /* Charts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charts.swift; sourceTree = "<group>"; };
+		F2B58CD22B2B9CED00837166 /* Rastreador.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rastreador.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,10 @@
 				F28C301E2B1E527A00E7EFB3 /* MapView.swift */,
 				F28C30202B1F9C4500E7EFB3 /* Rotas.swift */,
 				F2B58CC82B2A2F3E00837166 /* Teste.swift */,
+				F2B58CCA2B2B820400837166 /* MapaRota.swift */,
+				F2B58CCC2B2B91C900837166 /* Horarios.swift */,
+				F2B58CD02B2B9B7B00837166 /* Charts.swift */,
+				F2B58CD22B2B9CED00837166 /* Rastreador.swift */,
 			);
 			path = CittaUFBA;
 			sourceTree = "<group>";
@@ -146,10 +158,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2B58CCD2B2B91C900837166 /* Horarios.swift in Sources */,
 				F28C30132B1E526600E7EFB3 /* ContentView.swift in Sources */,
 				F28C301F2B1E527A00E7EFB3 /* MapView.swift in Sources */,
+				F2B58CD32B2B9CED00837166 /* Rastreador.swift in Sources */,
 				F28C30112B1E526600E7EFB3 /* CittaUFBAApp.swift in Sources */,
+				F2B58CD12B2B9B7B00837166 /* Charts.swift in Sources */,
 				F2B58CC92B2A2F3E00837166 /* Teste.swift in Sources */,
+				F2B58CCB2B2B820400837166 /* MapaRota.swift in Sources */,
 				F28C30212B1F9C4500E7EFB3 /* Rotas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +295,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CittaUFBA/Preview Content\"";
+				DEVELOPMENT_TEAM = 8UK7265392;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -307,6 +324,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CittaUFBA/Preview Content\"";
+				DEVELOPMENT_TEAM = 8UK7265392;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
